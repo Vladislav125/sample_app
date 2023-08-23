@@ -42,4 +42,20 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+
+  # возвращает true, если данный пользователь является текущим
+  def current_user?(user)
+    user == current_user
+  end
+
+  # перенаправить по сохранённому адресу или на страницу по умолчанию
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  # запоминает URL
+  def store_location
+    session[:forwarding_url] = request.url if request.get?
+  end
 end
