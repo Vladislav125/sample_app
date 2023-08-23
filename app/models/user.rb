@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   # возвращает случайный токен
-  def User.new_token
+  def self.new_token
     SecureRandom.urlsafe_base64
   end
 
