@@ -19,6 +19,8 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)       
   end
 
+  paginates_per 10
+
   # возвращает случайный токен
   def self.new_token
     SecureRandom.urlsafe_base64
