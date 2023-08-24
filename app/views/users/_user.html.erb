@@ -1,4 +1,7 @@
-<li>
+<li class="inline">
   <%= gravatar_for user, size: 80 %>
   <%= link_to user.name, user %>
+  <% if current_user.admin? && !current_user?(user) %>
+    <%= button_to "Delete user", user, form: {data: { turbo_confirm: "Are you sure?" }}, method: :delete, class: "btn-danger" %>
+  <% end %>
 </li>
